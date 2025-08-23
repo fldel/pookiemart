@@ -13,17 +13,42 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <style>
+            @keyframes gradientMove {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+            .gradient-animate {
+                background: linear-gradient(-45deg, #d6326c, #c50837, #fbcfe8, #e73d62);
+                background-size: 400% 400%;
+                animation: gradientMove 10s ease infinite;
+            }
+        </style>
     </head>
     <body class="font-sans text-brand-default antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-brand-default" />
-                </a>
-            </div>
+        <div class="min-h-screen flex items-center justify-center bg-gray-100">
+            <div class="w-full max-w-4xl min-h-[550px] bg-white rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
+                
+                <!-- LEFT SECTION -->
+                <div class="gradient-animate flex flex-col justify-between p-6 text-white rounded-r-2xl md:rounded-r-none md:rounded-l-2xl">
+                    <div>
+                        <p class="text-lg">You can easily</p>
+                        <h2 class="text-4xl font-bold mt-2">Get your needs with<br>Pookie Mart</h2>
+                    </div>
+                    <div class="flex justify-center space-x-6">
+                        <x-application-logo></x-application-logo>
+                        <x-pookie-logo></x-pookie-logo>
+                    </div>
+                </div>
 
-            <div class="w-full sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
+                <!-- RIGHT SECTION -->
+                <div class="flex flex-col justify-center items-center p-8">
+                <div class="p-8">
+                    {{ $slot }}
+                </div>
+                </div>
             </div>
         </div>
     </body>

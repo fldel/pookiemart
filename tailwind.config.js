@@ -12,7 +12,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['SF Pro Display', 'ui-sans-serif', 'system-ui'],
             },
             colors: {
                 brand: {
