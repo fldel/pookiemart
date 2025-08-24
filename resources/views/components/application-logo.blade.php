@@ -1,3 +1,3 @@
 <div class="w-20">
-    <img src="img/applogo.png" alt="">
+    <img src="img/appicon.png" alt="">
 </div>

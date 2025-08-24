@@ -3,55 +3,53 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ asset('img/pookieicon.png') }}" type="image/png class="">
     <title>PookieMart</title>
     @vite('resources/css/app.css')
 
     <style>
-        /* Carousel animation */
-        .slider {
-            display: flex;
-            width: max-content;
-            animation: scroll 20s linear infinite;
-        }
-        .slider .flex {
-            display: flex;
-            gap: 1.5rem; /* jarak antar gambar */
-        }
-        .slider img {
-            width: 500px;
-            height: 300px;
+        /* Fullscreen video background */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 16px; /* rounded */
-        }
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            z-index: -1; /* biar di belakang konten */
         }
     </style>
-
 </head>
-<body class="bg-white text-gray-900 flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen text-gray-900">
 
+    <!-- Video Background -->
+    <video autoplay muted loop playsinline class="video-bg">
+        <source src="{{ asset('vid/bg.mp4') }}" type="video/mp4">
+    </video>
+
+    <div class="absolute inset-0 bg-black/50"></div>
+    
     <!-- Header -->
-    <header class="bg-gray-20 flex justify-between items-center px-6 py-3 shadow">
-            <x-application-logo></x-application-logo>
+    <header class="relative z-10 flex items-center justify-between px-8 py-4">
+        <x-application-logo></x-application-logo>
+            
 
-        <div class="space-x-4">
+        <div class="space-x-3">
             @if (Route::has('login'))
                 @auth
                     <a href="{{ url('/home') }}" 
-                       class="px-4 py-2 bg-brand-default text-white rounded hover:bg-gray-800">
+                       class="px-8 py-4 text-black bg-white rounded-full hover:bg-brand-default hover:text-white">
                         Home
                     </a>
                 @else
                     <a href="{{ route('login') }}" 
-                       class="px-4 py-2 border-2 border-brand-default rounded hover:bg-brand-default/20">
-                        Login
+                       class="px-6 py-4 text-sm font-semibold rounded-full bg-white/30 hover:bg-white/50">
+                        Log In
                     </a>
 
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}" 
-                           class="px-4 py-2 bg-brand-default text-white rounded hover:bg-brand-dark">
+                           class="px-6 py-4 text-sm font-semibold text-black bg-white rounded-full hover:bg-brand-default hover:text-white">
                             Register
                         </a>
                     @endif
@@ -61,35 +59,24 @@
     </header>
 
     <!-- Hero Section -->
-    <main class="flex-1 flex flex-col justify-center items-center text-center px-4 py-12">
-        <h1 class="text-7xl font-semibold text-brand-default">POOKIE MART</h1>
-        <h2 class="text-9xl font-bold mt-2">ONE FOR ALL</h2>
-        <p class="text-lg text-gray-600 font-medium mt-3">created with fidelina affectine sweat</p>
+    <main class="relative z-10 flex flex-col items-center justify-center flex-1 px-4 text-center">
+        <h1 class="font-bold tracking-wider text-white text-8xl">
+            POOKIE MART
+        </h1>
+        <h2 class="mt-2 font-bold text-white text-9xl" >
+            ONE FOR ALL
+        </h2>    
+        <p class="max-w-lg mt-6 text-lg text-white/90">
+            get your shopping done with us
+        </p>
     </main>
 
-    <!-- Image Carousel -->
-    <section class="overflow-hidden w-full py-8 ">
-        <div class="slider">
-            <div class="flex space-x-6">
-                <img src="img/image1.jpg" alt="Image 1" class="rounded-2xl shadow-lg">
-                <img src="img/image2.jpg" alt="Image 2" class="rounded-2xl shadow-lg">
-                <img src="img/image3.jpg" alt="Image 3" class="rounded-2xl shadow-lg">
-                <img src="img/image4.jpg" alt="Image 4" class="rounded-2xl shadow-lg">
-                <img src="img/image5.jpg" alt="Image 5" class="rounded-2xl shadow-lg">
-                <!-- duplikat untuk looping halus -->
-                <img src="img/image1.jpg" alt="Image 1" class="rounded-2xl shadow-lg">
-                <img src="img/image2.jpg" alt="Image 2" class="rounded-2xl shadow-lg">
-                <img src="img/image3.jpg" alt="Image 3" class="rounded-2xl shadow-lg">
-                <img src="img/image4.jpg" alt="Image 4" class="rounded-2xl shadow-lg">
-                <img src="img/image5.jpg" alt="Image 5" class="rounded-2xl shadow-lg">
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
-    <footer class="bg-gray-200 text-black font-bold text-sm px-6 py-4 flex justify-between">
-        <span>©2025 PookieMart – All rights reserved</span>
-        <span>Pookie Mart</span>
+    <footer class="relative flex justify-center w-full pb-6 ">
+        <div class="flex items-center justify-between w-[90%] max-w-4xl px-6 py-4 text-sm font-medium text-white bg-black/70 rounded-2xl shadow-lg">
+            <span>@2025 – All rights reserved</span>
+            <span>created by fidelina affectine sweat</span>
+        </div>
     </footer>
 
 </body>
