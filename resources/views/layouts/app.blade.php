@@ -13,6 +13,14 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        </style>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -20,15 +28,15 @@
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="bg-white shadow">
-                    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <header class="fixed top-0 left-0 z-50 w-full bg-white shadow glass">
+                    <div class="px-4 py-6 mx-auto max-w-10xl sm:px-2 lg:px-8 glass">
                         {{ $header }}
                     </div>
                 </header>
             @endisset
 
             <!-- Page Content -->
-            <main>
+            <main class="pt-20">
                 {{ $slot }}
             </main>
         </div>

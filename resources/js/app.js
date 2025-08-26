@@ -1,15 +1,24 @@
 import './bootstrap';
 import Alpine from 'alpinejs';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+document.addEventListener('alpine:init', () => {
+    AOS.init({
+        duration: 1000, // lama animasi
+        once: true,     // cuma animasi sekali
+    });
+});
 
 window.Alpine = Alpine;
 
 Alpine.data('carousel', () => ({
     slides: [
+        { type: 'video', src: '/vid/kikatad.mp4' },
+        { type: 'video', src: '/vid/oreoads.mp4' },
         { type: 'image', src: '/img/ads3.png' },
         { type: 'video', src: '/vid/ultramilkads.mp4' },
-        { type: 'image', src: '/img/newjeans-indomieads.png' },
-        { type: 'video', src: '/vid/chitatoads.mp4' },
-        { type: 'image', src: '/img/cornettoice.jpg' },
+        { type: 'video', src: '/vid/cornettoads.mp4' },
     ],
     activeIndex: 0,
     timer: null,

@@ -18,16 +18,41 @@
             object-fit: cover;
             z-index: -1; /* biar di belakang konten */
         }
+
+                /* Glass effect footer */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+        }
+
+        /* Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("https://grainy-gradients.vercel.app/noise.svg");
+            opacity: 0.40; /* atur transparansi */
+            mix-blend-mode: overlay; /* biar nyatu sama video */
+            pointer-events: none; /* biar gak ganggu klik */
+            z-index: 0; /* pas di atas video, di bawah konten */
+        }
+
     </style>
 </head>
 <body class="flex flex-col min-h-screen text-gray-900">
 
     <!-- Video Background -->
     <video autoplay muted loop playsinline class="video-bg">
-        <source src="{{ asset('vid/bg.mp4') }}" type="video/mp4">
+        <source src="{{ asset('vid/bgbaru.mp4') }}" type="video/mp4">
     </video>
 
-    <div class="absolute inset-0 bg-black/50"></div>
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
     
     <!-- Header -->
     <header class="relative z-10 flex items-center justify-between px-8 py-4">
@@ -60,20 +85,20 @@
 
     <!-- Hero Section -->
     <main class="relative z-10 flex flex-col items-center justify-center flex-1 px-4 text-center">
-        <h1 class="font-bold tracking-wider text-white text-8xl">
+        <h1 class="font-bold tracking-wider text-white text-8xl drop-shadow">
             POOKIE MART
         </h1>
-        <h2 class="mt-2 font-bold text-white text-9xl" >
+        <h2 class="mt-2 font-bold text-white text-9xl drop-shadow">
             ONE FOR ALL
         </h2>    
-        <p class="max-w-lg mt-6 text-lg text-white/90">
+        <p class="max-w-lg mt-6 text-lg text-white drop-shadow">
             get your shopping done with us
         </p>
     </main>
 
     <!-- Footer -->
-    <footer class="relative flex justify-center w-full pb-6 ">
-        <div class="flex items-center justify-between w-[90%] max-w-4xl px-6 py-4 text-sm font-medium text-white bg-black/70 rounded-2xl shadow-lg">
+    <footer class="relative flex justify-center w-full pb-6">
+        <div class="flex items-center justify-between w-[90%] max-w-4xl px-6 py-4 text-sm font-medium text-white glass">
             <span>@2025 – All rights reserved</span>
             <span>created by fidelina affectine sweat</span>
         </div>
